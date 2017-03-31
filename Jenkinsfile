@@ -14,8 +14,8 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh whoami
-                sh ./upload.sh
+                sh 'whoami'
+                sh './upload.sh'
             }
         }
     }
