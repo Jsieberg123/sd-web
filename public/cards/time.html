@@ -1,0 +1,15 @@
+<div id="time-card<%=addr%>"> Hello World </div>
+<div>
+    <%= addr %>
+</div>
+<script>
+    safeInterval(function() {
+        sendMessage("get-time", <%= addr%>)
+    }, 1000);
+    sendMessage("get-time", <%= addr%>);
+
+    responseHandlers["resp-get-time"] = function(resp) {
+        console.log(resp);
+        $("#time-card" + resp.addr).html(resp.time);
+    }
+</script>

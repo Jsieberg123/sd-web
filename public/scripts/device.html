@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col s12 m10 offset-m1">
+        <div class="card min-hieght">
+            <div class="card-content">
+                <div class="card-title">
+                    <%= device.description %>
+                        <i class="pointer material-icons activator right">more_vert</i>
+                </div>
+                <div id="device">
+                    <div id="spinner" class="center row">
+                        <div class="progress col s12 m10 offset-m1">
+                            <div class="indeterminate"></div>
+                        </div>
+                    </div>
+                    <div id="retry" class="center" hidden>
+                        <div>
+                            Failed to connect.
+                        </div>
+                    </div>
+                    <div id="cards">
+                    </div>
+                </div>
+            </div>
+            <div class="card-reveal">
+                <span class="card-title">Options<i class="material-icons right">close</i></span>
+                <div class="row">
+                    <form method="post" action="/update" class="col s12 m6 update<%= device.id%>">
+                        <input type="hidden" value="<%= device.id%>" name="id">
+                        <div class="input-field">
+                            <input id="description" type="text" class="validate" name="description">
+                            <label for="description">Description</label>
+                        </div>
+                    </form>
+                    <form method="post" action="/delete" class="col s12 delete<%= device.id%>">
+                        <input type="hidden" value="<%= device.id %>" name="id">
+                    </form>
+                </div>
+                <button id="update<%= device.id%>" class="btn waves-effect waves-light click" type="submit">Save
+                                    <i class="material-icons right">send</i>
+                            </button>
+                <button id="delete<%= device.id%>" class="btn waves-effect waves-light click" type="submit">Delete
+                                    <i class="material-icons right">delete</i>
+                            </button>
+            </div>
+        </div>
+    </div>
+</div>

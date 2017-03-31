@@ -1,0 +1,28 @@
+<div id="switch-card<%=addr%>"> Hello World </div>
+<div>
+    <%= addr %>
+</div>
+<script>
+    var pos = false;
+    safeInterval(function() {
+        sendMessage("get-pos", <%= addr%>)
+        pos = !pos;
+        sendMessage("set-pos", {
+            addr: <%= addr %>,
+            pos: pos
+        })
+    }, 1000);
+    sendMessage("get-pos", <%= addr%>);
+
+    responseHandlers["resp-get-pos"] = function(resp) {
+        console.log(resp);
+        var text = "FAIL";
+        if (resp.pos) {
+            text = "ON";
+        } else {
+            text = "OFF";
+        }
+
+        $("#switch-card" + resp.addr).html(text);
+    }
+</script>
