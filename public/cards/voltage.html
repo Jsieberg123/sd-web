@@ -1,4 +1,4 @@
-<div>
+<div class="row">
     <div id="<%=id%>" contentEditable="true">
         <%= name %>
     </div>
@@ -14,6 +14,14 @@
         <span>Phase C Voltage:</span>
         <span id="voltage-card<%=id%>phaseC">0</span>
     </div>
+    <div class="col s4">
+        <span>Temperature 1:</span>
+        <span id="voltage-card<%=id%>temp1">0</span>
+    </div>
+    <div class="col s4">
+        <span>Temperature 2:</span>
+        <span id="voltage-card<%=id%>temp2">0</span>
+    </div>
 </div>
 <script>
     safeInterval(function() {
@@ -26,6 +34,8 @@
         $("#voltage-card" + resp.id + "phaseA").html(resp.phaseA);
         $("#voltage-card" + resp.id + "phaseB").html(resp.phaseB);
         $("#voltage-card" + resp.id + "phaseC").html(resp.phaseC);
+        $("#voltage-card" + resp.id + "temp1").html(resp.temp1);
+        $("#voltage-card" + resp.id + "temp2").html(resp.temp2);
     }
 
     $("#<%=id%>").blur(function() {
