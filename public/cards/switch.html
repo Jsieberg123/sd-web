@@ -1,28 +1,21 @@
-<div id="switch-card<%=addr%>"> Hello World </div>
 <div>
-    <%= addr %>
+    <div id="<%=id%>" contentEditable="true">
+        <%= name %>
+    </div>
+    <button id="switch-card<%=id%>on" class="waves-effect waves-light btn">On</button>
+    <button id="switch-card<%=id%>off" class="waves-effect waves-light btn">Off</button>
+</div>
+<div>
 </div>
 <script>
-    var pos = false;
-    safeInterval(function() {
-        sendMessage("get-pos", <%= addr%>)
-        pos = !pos;
-        sendMessage("set-pos", {
-            addr: <%= addr %>,
-            pos: pos
-        })
-    }, 1000);
-    sendMessage("get-pos", <%= addr%>);
+    $("#switch-card<%=id%>on").click(function() {
+        alert("id: <%=id%>")
+    });
 
-    responseHandlers["resp-get-pos"] = function(resp) {
-        console.log(resp);
-        var text = "FAIL";
-        if (resp.pos) {
-            text = "ON";
-        } else {
-            text = "OFF";
-        }
-
-        $("#switch-card" + resp.addr).html(text);
-    }
+    $("#<%=id%>").blur(function() {
+        sendMessage("set-name", {
+            id: <%= id %>,
+            name: $(this).text().trim()
+        });
+    });
 </script>
