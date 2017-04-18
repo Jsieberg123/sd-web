@@ -9,7 +9,11 @@
 </div>
 <script>
     $("#switch-card<%=id%>on").click(function() {
-        alert("id: <%=id%>")
+        sendMessage("set-on", <%= id%>);
+    });
+
+    $("#switch-card<%=id%>off").click(function() {
+        sendMessage("set-off", <%= id%>);
     });
 
     $("#<%=id%>").blur(function() {
